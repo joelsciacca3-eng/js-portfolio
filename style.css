@@ -290,7 +290,6 @@ body.has-pointer .pointer-glow {
   padding-block: 1.25rem;
   transition: padding var(--transition), background var(--transition), border-color var(--transition), backdrop-filter var(--transition);
   opacity: 0;
-  transform: translateY(-1rem);
   animation: nav-enter 700ms var(--ease) 80ms forwards;
 }
 
@@ -1595,7 +1594,13 @@ body.has-pointer .pointer-glow {
 }
 
 @keyframes nav-enter {
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes title-enter {
@@ -1692,14 +1697,20 @@ body.has-pointer .pointer-glow {
     inset: 0;
     display: flex;
     visibility: hidden;
+    height: 100dvh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 7rem var(--gutter) 3rem;
     flex-direction: column;
     align-items: stretch;
     justify-content: space-between;
-    background: rgba(9, 10, 8, 0.98);
+    background: var(--bg);
     opacity: 0;
     transform: translateY(-1rem);
-    transition: visibility 0s 500ms, opacity 500ms var(--ease), transform 500ms var(--ease);
+    transition:
+      visibility 0s 500ms,
+      opacity 500ms var(--ease),
+      transform 500ms var(--ease);
   }
 
   .nav-panel.is-open {
